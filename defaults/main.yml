@@ -18,7 +18,7 @@ elk_elasticsearch:
   path: /var/crash/elasticsearch
 
 elk_logstash:
-  version: 1.4
+  version: 2.1
   pid_file: /var/run/logstash.pid
   configs:
     - { src: logstash-simple.conf.j2, dest: simple.conf }
