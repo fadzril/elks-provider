@@ -5,7 +5,7 @@
     dest: /etc/yum.repos.d/elasticsearch.repo
     mode: 0644
 
-- name : Updating yum packages
+- name: Updating yum packages.
   yum: pkg=* state=latest
   sudo: yes
 
