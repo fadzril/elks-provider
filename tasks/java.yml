@@ -2,9 +2,9 @@
 - name: Installing java...
   yum: name={{ item }} update_cache=yes state=present
   with_items:
-    - java-1.{{elk_java.version}}.0-openjdk
-    - java-1.{{elk_java.version}}.0-openjdk-devel
-    - java-1.{{elk_java.version}}.0-openjdk-javadoc
+    - java-1.{{ elk_java.version }}.0-openjdk
+    - java-1.{{ elk_java.version }}.0-openjdk-devel
+    - java-1.{{ elk_java.version }}.0-openjdk-javadoc
   sudo: true
 
 - name: Installing Java configurations setup

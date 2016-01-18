@@ -1,16 +1,18 @@
 ---
 elk_common_packages:
-    - openntpd
-    - python-apt
     - python-pycurl
     - python-pip
     - supervisor
     - monit
-    - git-core
 elk_java:
+  version: 7
   flavor: openjdk
   oracle:
     - oracle-java7-installer
     - oracle-java7-set-default
   openjdk:
     - openjdk-7-jre-headless
+  proxy_env:
+    http_proxy: "http://proxy.sgp.hp.com:8080"
+    https_proxy: "http://proxy.sgp.hp.com:8080"
+
