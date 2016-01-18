@@ -1,6 +1,6 @@
 ---
 - name: Load RedHat variables
-  include_vars: "RedHat.yml" 
+  include_vars: "RedHat.yml"
 
 - name: Install common yum packages
   yum: pkg={{ item }} state=latest update_cache=true
@@ -20,9 +20,6 @@
 
 - name: Install Elasticsearch
   include: elasticsearch.yml
-
-- name: Install Logstash
-  include: logstash.yml
 
 - name: Install Nginx
   include: nginx.yml
