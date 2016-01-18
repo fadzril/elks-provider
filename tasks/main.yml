@@ -1,6 +1,6 @@
 ---
 - name: Include OS-specific variables
-  include_vars: "RedHat.yml"
+  include_vars: 'RedHat.yml'
 
 - name: Install common yum packages
   yum: pkg={{ item }} state=latest update_cache=true
