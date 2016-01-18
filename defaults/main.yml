@@ -1,5 +1,6 @@
 ---
 elk_java:
+  version: 7
   flavor: openjdk
   oracle:
     - oracle-java7-installer
@@ -12,6 +13,9 @@ elk_elasticsearch:
   pid_file: /var/run/elasticsearch.pid
   http:
     port: 9200
+  hostname: 127.0.0.1
+  cluster: leo
+  path: /var/crash/elasticsearch
 
 elk_logstash:
   version: 1.4
@@ -22,7 +26,7 @@ elk_logstash:
 
 elk_kibana:
   version: 4.0.2-linux-x64
-  path: /opt/kibana
+  path: /var/crash/kibana
   port: 5601
   user: kibana # optional; if unset, kibana does not require authentication
   password: kibana # optional; if unset, kibana does not require authentication

@@ -1,14 +1,14 @@
 ---
 galaxy_info:
-  author: bakhti
-  company: Brightgrove
-  description: Setup Elasticsearch ELK Stack on Debian/Ubuntu linux servers
+  author: fadzril
+  company: HP
+  description: Setup Elasticsearch ELK Stack RHEL 6 servers
   license: MIT
   min_ansible_version: 1.4
   platforms:
-  - name: Ubuntu
+  - name: Redhat6.7
     versions:
-    - trusty
+    - Santiago
   categories:
   - monitoring
   - system
