@@ -1,4 +1,11 @@
 ---
+- name: Add Elasticsearch GPG key.
+  rpm_key:
+    key: https://packages.elastic.co/GPG-KEY-elasticsearch
+    state: present
+    validate_certs: no 
+  sudo: yes
+
 - name: Add Elasticsearch repository.
   copy:
     src: elasticsearch.repo
