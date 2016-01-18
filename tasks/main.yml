@@ -1,5 +1,6 @@
 ---
-- include_vars: "{{ ansible_os_family }}.yml" 
+- name: Load RedHat variables
+  include_vars: "RedHat.yml" 
 
 - name: Install common yum packages
   yum: pkg={{ item }} state=latest update_cache=true
