@@ -1,6 +1,6 @@
 ---
 - name: Add repo file
-  template: src=files/nginx_centos.repo dest=/etc/yum.repos.d/nginx.repo owner=root group=root mode=0644
+  template: src=nginx.repo dest=/etc/yum.repos.d/nginx.repo owner=root group=root mode=0644
 
 - name: Add repo key
   get_url: url=http://nginx.org/keys/nginx_signing.key dest=/etc/pki/rpm-gpg/RPM-GPG-KEY-nginx sha256sum=dcc2ed613d67b277a7e7c87b12907485652286e199c1061fb4b3af91f201be39 force=yes
