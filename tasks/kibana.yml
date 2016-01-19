@@ -1,6 +1,6 @@
 ---
 - name: Kibana archive available
-  action: wget -P /opt/ --no-check-certificate https://download.elastic.co/kibana/kibana/kibana-{{ elk_kibana.version }}.tar.gz
+  action: shell wget -P /opt/ --no-check-certificate https://download.elastic.co/kibana/kibana/kibana-{{ elk_kibana.version }}.tar.gz
   register: new_archive_downloaded
 
 - name: Kibana archive download and uncompressed

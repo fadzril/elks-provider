@@ -42,6 +42,7 @@ elk_kibana:
 elk_nginx:
   port: 80
   user: nginx
+  mainline: true
 
 proxy_env:
   http_proxy: "http://proxy.sgp.hp.com:8080"
