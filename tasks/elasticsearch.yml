@@ -12,7 +12,6 @@
 - name: Install Elasticsearch.
   yum: pkg=elasticsearch state=installed update_cache=yes
   sudo: yes
-  notify: Restart elasticsearch
 
 - name: Curator PIP package
   pip: name=elasticsearch-curator state=latest
