@@ -14,7 +14,7 @@
   sudo: yes
 
 - name: Curator PIP package
-  pip: name=elasticsearch-curator state=latest
+  pip: name=elasticsearch-curator state=latest extra_args='--proxy {{ proxy_env.http_proxy }}'
   sudo: yes
 
 - name: ES config file
