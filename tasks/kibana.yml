@@ -3,6 +3,8 @@
   get_url:
     dest=/opt
     url=https://download.elastic.co/kibana/kibana/kibana-{{ elk_kibana.version }}.tar.gz
+    validate_certs=no
+    use_proxy=yes
     owner={{ elk_nginx.user }} group={{ elk_nginx.user }}
   sudo: yes
   register: new_archive_downloaded
@@ -54,7 +56,7 @@
     owner={{ elk_nginx.user }} group=root mode=400
   sudo: yes
   when: http_pass_gen|changed
-    
+
 - name: Nginx config file
   template:
     src=kibana-default.j2
