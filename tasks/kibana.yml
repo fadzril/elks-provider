@@ -1,21 +1,10 @@
 ---
-- name: Kibana archive available
-  get_url:
-    dest=/opt
-    url=https://download.elastic.co/kibana/kibana/kibana-{{ elk_kibana.version }}.tar.gz
-    validate_certs=no
-    use_proxy=yes
-    owner={{ elk_nginx.user }} group={{ elk_nginx.user }}
-  sudo: yes
-  register: new_archive_downloaded
-
-- name: Kibana archive uncompressed
+- name: Kibana archive download and uncompressed
   unarchive:
     src=/opt/kibana-{{ elk_kibana.version }}.tar.gz
     dest=/opt copy=no
     owner={{ elk_nginx.user }} group={{ elk_nginx.user }}
   sudo: yes
-  when: new_archive_downloaded|changed
 
 - name: Uncompressed Kibana linked to path
   file:

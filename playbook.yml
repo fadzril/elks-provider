@@ -1,5 +1,7 @@
 ---
 - hosts: localhost
+  vars:
+    - include: defaults/main.yml
   handlers:
     - include: handlers/main.yml
   tasks:
