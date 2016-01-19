@@ -2,19 +2,19 @@
 - name: Add nginx apt key
   apt_key:
     url='http://nginx.org/keys/nginx_signing.key'
-  when: ansible_os_family == 'Debian'
+  when: ansible_os_family == 'RedHat'
   sudo: yes
 
 - name: Add nginx apt repo
   apt_repository:
     repo="deb http://nginx.org/packages/{{ ansible_lsb.id|lower }}/ {{ ansible_lsb.codename }} nginx"
     update_cache=yes
-  when: ansible_os_family == 'Debian'
+  when: ansible_os_family == 'RedHat'
   sudo: yes
-  
+
 - name: Install Nginx apt package
   apt: pkg=nginx state=latest
-  when: ansible_os_family == 'Debian'
+  when: ansible_os_family == 'RedHat'
   sudo: yes
 
 - name: Disable default servers
