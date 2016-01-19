@@ -1,15 +1,13 @@
 ---
 - name: Add Elasticsearch repository.
+  when: ansible_os_family == 'RedHat'
   copy:
     src: files/elasticsearch.repo
     dest: /etc/yum.repos.d/elasticsearch.repo
     mode: 0644
 
-- name: Updating yum packages.
-  yum: pkg=* state=latest
-  sudo: yes
-
 - name: Install Elasticsearch.
+  when: ansible_os_family == 'RedHat'
   yum: pkg=elasticsearch state=installed update_cache=yes
   sudo: yes
 
@@ -22,6 +20,7 @@
     src=elasticsearch.yml.j2
     dest=/etc/elasticsearch/elasticsearch.yml
     owner=root group=root mode=644
+  when: ansible_os_family == 'RedHat'
   sudo: yes
   notify: Restart elasticsearch
 
