@@ -21,14 +21,19 @@ elk_elasticsearch:
     port: 9200
   hostname: 127.0.0.1
   cluster: leo
-  path: /var/crash/elasticsearch
+  path: /opt/cloudhost/elasticsearch
 
 elk_logstash:
   version: 2.1
   pid_file: /var/run/logstash.pid
   configs:
-    - { src: logstash-simple.conf.j2, dest: simple.conf }
-  patterns: [] # optional; follows same format as `configs`
+    - { src: files/conf.d/01-input.conf, dest: conf.d/01-input.conf }
+    - { src: files/conf.d/02-filter-default.conf, dest: conf.d/02-filter-default.conf }
+    - { src: files/conf.d/03-filter-xml.conf, dest: conf.d/03-filter-xml.conf }
+    - { src: files/conf.d/04-filter-json.conf, dest: conf.d/04-filter-json.conf }
+    - { src: files/conf.d/05-output.conf, dest: conf.d/05-output.conf }
+  patterns:
+    - { src: files/patterns/custom, dest: patterns/custom}
 
 elk_kibana:
   version: 4.3.1-linux-x64

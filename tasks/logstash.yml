@@ -35,7 +35,7 @@
 - name: Make monit to look after Logstash
   template:
     src=logstash.monitrc.conf.j2
-    dest=/etc/monit/conf.d/logstash.monitrc.conf
+    dest=/etc/monit.d/logstash.monitrc.conf
     owner=root group=root mode=644
   sudo: yes
   notify: Restart monit

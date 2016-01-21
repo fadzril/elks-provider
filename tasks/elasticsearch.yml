@@ -27,7 +27,7 @@
 - name: Make monit to look after ES
   template:
     src=elasticsearch.monitrc.conf.j2
-    dest=/etc/monit/conf.d/elasticsearch.monitrc.conf
+    dest=/etc/monit.d/elasticsearch.monitrc.conf
     owner=root group=root mode=644
   sudo: yes
   notify: Restart monit

@@ -26,7 +26,7 @@
 - name: Make monit to look after nginx
   template:
     src=nginx.monitrc.conf.j2
-    dest=/etc/monit/conf.d/nginx.monitrc.conf
+    dest=/etc/monit.d/nginx.monitrc.conf
     owner=root group=root mode=644
   sudo: yes
   notify: Restart monit
