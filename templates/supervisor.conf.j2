@@ -1,0 +1,41 @@
+[supervisord]
+http_port=/var/tmp/supervisor.sock
+;http_port=127.0.0.1:9001
+;sockchmod=0700
+;sockchown=nobody.nogroup
+;umask=022
+
+logfile=/var/log/supervisor/supervisord.log
+logfile_maxbytes=25MB
+logfile_backups=10
+loglevel=info
+pidfile=/var/run/supervisord.pid
+nodaemon=false
+minfds=1024
+minprocs=200
+
+;nocleanup=true
+;http_username=user
+;http_password=123
+;childlogdir=/tmp
+;user=chrism
+;directory=/tmp
+;environment=KEY=value
+
+[supervisorctl]
+serverurl=unix:///var/tmp/supervisor.sock
+;serverurl=http://127.0.0.1:9001
+;username=chris
+;password=123
+
+; The below sample program section shows all possible program subsection values,
+; create one or more 'real' program: sections to be able to control them under
+; supervisor.
+
+[program:kibana]
+command={{ elk_kibana.path }}/bin/kibana
+autostart=true
+autorestart=true
+user={{ elk_nginx.user }}
+stdout_logfile=/var/log/supervisor/kibana.log
+stderr_logfile=/var/log/supervisor/error.log

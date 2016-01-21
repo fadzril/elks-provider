@@ -69,4 +69,4 @@ FPATH ^\/([a-z]\/*)*+%{GREEDYDATA:transaction_id}_%{DATA:subscription_id}.txt
 ###
 # Informatica Batch (DB/FILES) - 01/20/2016
 ##
-BATCH_LOG %{TIMESTAMP_ISO8601:ts}\|%{DATA:app_id}\|%{DATA:category}\|%{DATA:component}\|%{DATA:hostname}\|%{WORDS:status}\|%{INT:subscription_id}\|%{WORDS:tags}\|%{DATA:transaction_type}\|%{DATA:type}\|%{INT:transaction_id}\|%{WORDS:source_filename}\|%{WORDS:target_filename}\|%{GREEDYDATA:messages}
+BATCH_LOG %{TIMESTAMP_ISO8601:ts}0000\|%{DATA:app_id}\|%{DATA:category}\|%{DATA:component}\|%{DATA:hostname}\|%{WORD:status}\|%{DATA:subscription_id}\|%{DATA:tags}\|(?:%{DATA:transaction_type}*)+\|(?:%{DATA:log_type}*)+\|%{INT:transaction_id}\|(?:%{WORDS:source_filename}*)+\|%{WORDS:target_filename}\|%{GREEDYDATA:messages}

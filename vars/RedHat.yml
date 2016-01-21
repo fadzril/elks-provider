@@ -19,7 +19,7 @@ elk_elasticsearch:
   pid_file: /var/run/elasticsearch.pid
   http:
     port: 9200
-  hostname: 127.0.0.1
+  hostname: 0.0.0.0
   cluster: leo
   path: /opt/cloudhost/elasticsearch
 

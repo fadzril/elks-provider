@@ -8,35 +8,6 @@ elk_java:
   openjdk:
     - openjdk-7-jre-headless
 
-elk_elasticsearch:
-  version: 2.1
-  pid_file: /var/run/elasticsearch.pid
-  http:
-    port: 9200
-  hostname: 127.0.0.1
-  cluster: leo
-  path: /var/crash/elasticsearch
-
-elk_logstash:
-  version: 2.1
-  pid_file: /var/run/logstash.pid
-  configs:
-    - { src: logstash-simple.conf.j2, dest: simple.conf }
-  patterns: [] # optional; follows same format as `configs`
-
-elk_kibana:
-  version: 4.3.1-linux-x64
-  path: /var/crash/kibana
-  port: 5601
-  user: kibana # optional; if unset, kibana does not require authentication
-  password: kibana # optional; if unset, kibana does not require authentication
-  allowed_addresses:
-    - 127.0.0.1
-
-elk_nginx:
-  port: 80
-  user: nginx
-
 proxy_env:
   http_proxy: "http://proxy.sgp.hp.com:8080"
   https_proxy: "http://proxy.sgp.hp.com:8080"
