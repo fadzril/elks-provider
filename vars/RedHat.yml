@@ -17,11 +17,19 @@ elk_java:
 elk_elasticsearch:
   version: 2.1
   pid_file: /var/run/elasticsearch.pid
+  hostname: c4t17649.itcs.hpecorp.net
+  path: /opt/cloudhost/elasticsearch
+  cluster: leo
   http:
     port: 9200
-  hostname: 0.0.0.0
-  cluster: leo
-  path: /opt/cloudhost/elasticsearch
+  node:
+    main: N01
+    master:
+      name: N02
+      path: /etc/elasticsearch/cluster/master/config
+    slave:
+      name: N03
+      path: /etc/elasticsearch/cluster/slave/config
 
 elk_logstash:
   version: 2.1

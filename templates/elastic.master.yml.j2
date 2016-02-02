@@ -1,0 +1,43 @@
+# <http://elasticsearch.org/guide/en/elasticsearch/reference/current/setup-configuration.html>
+#node.rack: ${RACK_ENV_VAR}
+
+cluster.name: leo
+
+node.name: '{{elk_elasticsearch.node.master.name}}-{{elk_elasticsearch.hostname}}'
+node.master: true
+node.data: true
+index.number_of_shards: 6
+#index.number_of_replicas: 1
+
+#path.conf: /etc/elasticsearch/cluster
+path.data: /opt/cloudhost/elasticsearch/clusters/master/data
+path.logs: /opt/cloudhost/elasticsearch/clusters/master/logs
+path.plugins: /usr/share/elasticsearch/plugins
+
+bootstrap.mlockall: true
+
+#network.bind_host: 192.168.0.1
+#network.publish_host: 192.168.0.1
+#network.host: 192.168.0.1
+
+#transport.tcp.port: 9300
+#transport.tcp.compress: true
+#http.port: 9222
+#http.max_content_length: 100mb
+http.enabled: false
+#http.jsonp.enable: true
+
+#gateway.type: local
+#gateway.recover_after_nodes: 1
+#gateway.recover_after_time: 5m
+#gateway.expected_nodes: 2
+
+#cluster.routing.allocation.node_initial_primaries_recoveries: 4
+#cluster.routing.allocation.node_concurrent_recoveries: 2
+#indices.recovery.max_bytes_per_sec: 20mb
+indices.recovery.concurrent_streams: 5
+
+discovery.zen.minimum_master_nodes: 1
+discovery.zen.ping.timeout: 30s
+discovery.zen.ping.multicast.enabled: false
+discovery.zen.ping.unicast.hosts: ["0.0.0.0", "c4t17649.itcs.hpecorp.net"]

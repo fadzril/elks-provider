@@ -44,7 +44,7 @@ cluster.name: {{elk_elasticsearch.cluster}}
 # Node names are generated dynamically on startup, so you're relieved
 # from configuring them manually. You can tie this node to a specific name:
 #
-node.name: {{elk_elasticsearch.cluster}}-
+node.name: '{{elk_elasticsearch.node.main}}-{{elk_elasticsearch.hostname}}'
 
 # Every node can be configured to allow or deny being eligible as the master,
 # and to allow or deny to store the data.
@@ -194,7 +194,7 @@ bootstrap.mlockall: true
 # try the next port).
 
 # Set the bind address specifically (IPv4 or IPv6):
-#network.bind_host: 192.168.0.1
+network.bind_host: 0.0.0.0
 
 # Set the address other nodes will use to communicate with this node. If not
 # set, it is automatically derived. It must point to an actual IP address.
@@ -306,7 +306,7 @@ discovery.zen.ping.multicast.enabled: false
 # 2. Configure an initial list of master nodes in the cluster
 #    to perform discovery when new nodes (master or data) are started:
 #
-discovery.zen.ping.unicast.hosts: [{{elk_elasticsearch.hostname}}]
+discovery.zen.ping.unicast.hosts: ['{{elk_elasticsearch.hostname}}', 0.0.0.0]
 
 # EC2 discovery allows to use AWS EC2 API in order to perform discovery.
 # You have to install the cloud-aws plugin for enabling the EC2 discovery.
@@ -369,5 +369,5 @@ discovery.zen.ping.unicast.hosts: [{{elk_elasticsearch.hostname}}]
 ############################## Network And HTTP ###############################
 
 {% if elk_elasticsearch.http.port is defined %}
-http.port: {{ elk_elasticsearch.http.port }}
+# http.port: {{ elk_elasticsearch.http.port }}
 {% endif %}

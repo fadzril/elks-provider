@@ -24,6 +24,40 @@
   sudo: yes
   notify: Restart elasticsearch
 
+- name: Creates ES Cluster (master) directory
+  file: >
+    path={{elk_elasticsearch.node.master.path}}
+    state=directory
+    owner={{elk_elasticsearch.owner}}
+    group={{elk_elasticsearch.group}}
+    mode=0775
+    recurse=yes
+
+- name: ES Cluster (master) config file
+  template:
+    src=elastic.master.yml.j2
+    dest={{elk_elasticsearch.node.master.path}}/elasticsearch.yml
+    owner=root group=root mode=644
+  when: ansible_os_family == 'RedHat'
+  sudo: yes
+
+- name: Creates ES Cluster (slave) directory
+  file: >
+    path={{elk_elasticsearch.node.slave.path}}
+    state=directory
+    owner={{elk_elasticsearch.owner}}
+    group={{elk_elasticsearch.group}}
+    mode=0775
+    recurse=yes
+
+- name: ES Cluster (slave) config file
+  template:
+    src=elastic.slave.yml.j2
+    dest={{elk_elasticsearch.node.slave.path}}/elasticsearch.yml
+    owner=root group=root mode=644
+    when: ansible_os_family == 'RedHat'
+    sudo: yes
+
 - name: Make monit to look after ES
   template:
     src=elasticsearch.monitrc.conf.j2

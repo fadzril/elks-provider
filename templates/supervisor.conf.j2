@@ -28,10 +28,6 @@ serverurl=unix:///var/tmp/supervisor.sock
 ;username=chris
 ;password=123
 
-; The below sample program section shows all possible program subsection values,
-; create one or more 'real' program: sections to be able to control them under
-; supervisor.
-
 [program:kibana]
 command={{ elk_kibana.path }}/bin/kibana
 autostart=true
@@ -39,3 +35,30 @@ autorestart=true
 user={{ elk_nginx.user }}
 stdout_logfile=/var/log/supervisor/kibana.log
 stderr_logfile=/var/log/supervisor/error.log
+
+[program:master]
+directory=/usr/share/elasticsearch
+command=su -s '/bin/sh' -c 'bin/elasticsearch -Des.default.path.conf=/etc/elasticsearch/cluster/master/config -Des.default.path.logs=/opt/cloudhost/elasticsearch/clusters/master/logs -Des.default.path.data=/opt/cloudhost/elasticsearch/cluster/master/data' elasticsearch
+user=elasticsearch
+environment=JAVA_OPTS="-Xmx256m -Xms64m",ES_MIN_MEM=64m,ES_MAX_MEM=256m
+autostart=false
+autorestart=true
+startsecs=30
+redirect_stderr=true
+stdout_logfile=/var/log/supervisor/master.log
+stderr_logfile=/var/log/supervisor/master.error.log
+
+[program:slave]
+directory=/usr/share/elasticsearch
+command=su -s '/bin/sh' -c 'bin/elasticsearch -Des.default.path.conf=/etc/elasticsearch/cluster/slave/config -Des.default.path.logs=/opt/cloudhost/elasticsearch/clusters/slave/logs -Des.default.path.data=/opt/cloudhost/elasticsearch/cluster/slave/data' elasticsearch
+user=elasticsearch
+environment=JAVA_OPTS="-Xmx256m -Xms64m",ES_MIN_MEM=64m,ES_MAX_MEM=256m
+autostart=true
+autorestart=true
+startsecs=30
+redirect_stderr=true
+stdout_logfile=/var/log/supervisor/slave.log
+stderr_logfile=/var/log/supervisor/slave.error.log
+
+[group:elastic]
+programs=master,slave
